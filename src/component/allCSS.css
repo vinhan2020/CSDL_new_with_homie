@@ -1,3 +1,4 @@
+/* CSS của Home Page */
 header {
   position: fixed;
   top: 0;
@@ -84,3 +85,27 @@ header.sticky .logo {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.header_add {
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.paddingTale {
+  margin-top: 70px;
+}
+.mg-10 {
+  margin-right: 30px;
+}
+/* CSS của Home Page */
+/* CSS của Hãng Page */
+
+/* CSS của cong ty Page */
+/* CSS của cong ty Page */
+
+/* CSS của san pham Page */
+/* CSS của san pham Page */
+
+/* CSS của khach hang Page */
+/* CSS của khach hang Page */
