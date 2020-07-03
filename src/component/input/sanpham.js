@@ -11,25 +11,25 @@ class sanpham extends Component {
                     <Link to={'/'}><button className="btn btn-info " >Back</button></Link>
 
                     <h1 style={{ textAlign: "center" }}>Danh Sách Sản Phẩm</h1>
-                    <Link ><button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" className="btn btn-success " data-toggle="modal" data-target="#exampleModal">
                         +
-                </button></Link>
+                </button>
 
                 </div>
                 {/* btn them san pham */}
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h4 className="modal-title" id="exampleModalLabel">Tạo mới sản phẩm</h4>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <div className="form-group">
                                     <label htmlFor="maSP">Mã Sản Phẩm</label>
-                                    <input type="text" className="form-control" id="maSP" aria-describedby="emailHelp" placeholder="Mã Sản Phẩm" />
+                                    <input type="text" className="form-control" id="maSP" placeholder="Mã Sản Phẩm" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="tenSP">Tên Sản Phẩm</label>
@@ -48,9 +48,9 @@ class sanpham extends Component {
                                     <input type="text" className="form-control" id="maH" placeholder="Mã Hãng" />
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
+                                <button type="button" className="btn btn-success btn-w">Tạo</button>
                             </div>
                         </div>
                     </div>
@@ -79,12 +79,52 @@ class sanpham extends Component {
                                 <td>a</td>
                                 <td>b</td>
                                 <td>c</td>
-                                <td style={{ maxWidth: "100px" }}><button className="btn btn-primary mg-10">Sửa</button>
+                                <td style={{ maxWidth: "100px" }}><button className="btn btn-primary mg-10" data-toggle="modal" data-target="#suaForm">Sửa</button>
                                     <button className="btn btn-danger mg-10">Xóa</button></td>
 
                             </tr>
                         </tbody>
                     </table>
+                    {/* btn them san pham */}
+                    <div className="modal fade" id="suaForm" tabIndex="-1" role="dialog" aria-labelledby="suaFormLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h4 className="modal-title" id="suaFormLabel">Sửa thông tin sản phẩm</h4>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="form-group">
+                                        <label htmlFor="maSPSua">Mã Sản Phẩm</label>
+                                        <input type="text" className="form-control" id="maSPSua" placeholder="Mã Sản Phẩm" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="tenSPSua">Tên Sản Phẩm</label>
+                                        <input type="text" className="form-control" id="tenSPSua" placeholder="Tên Sản Phẩm" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="mausacSua">Màu Sắc</label>
+                                        <input type="text" className="form-control" id="mausacSua" placeholder="Màu sắc" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="dongiaSua">Đơn Giá</label>
+                                        <input type="number" className="form-control" id="dongiaSua" placeholder="Đơn Giá" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="maHSua">Mã Hãng</label>
+                                        <input type="text" className="form-control" id="maHSua" placeholder="Mã Hãng" />
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
+                                    <button type="button" className="btn btn-success btn-w">Tạo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* btn them san pham */}
                 </div>
 
                 {/* hien thị danh sách */}

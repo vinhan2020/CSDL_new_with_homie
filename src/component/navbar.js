@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 class navbar extends Component {
 
+
     render() {
 
         return (
@@ -16,13 +17,12 @@ class navbar extends Component {
                         <li><Link to={'/sanpham'}>Sản Phẩm</Link></li>
                         <li><Link to={'/khachhang'}>Khách Hàng</Link></li>
 
-
-                        <li className="dropdown">
+                        {/* <li className="dropdown">
                             <span>Profile </span>
                             <div className="dropdown-content">
                                 <a style={{ textDecoration: "none" }} href="/#">Contact</a>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </header>
             </div>
