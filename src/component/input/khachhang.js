@@ -180,22 +180,26 @@ class khachhang extends Component {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div className="modal-body">
+                            <div id="a" className="modal-body">
                                 <div className="form-group">
                                     <label htmlFor="maKH">Mã Khách Hàng</label>
-                                    <input onChange={e => { this.setState({ MaKH: e.target.value }) }} type="text" className="form-control" id="maKH" placeholder="Mã Khách Hàng" />
+                                    <input onChange={e => { this.setState({ MaKH: e.target.value }) }}
+                                        type="text" className="form-control" id="maKH" placeholder="Mã Khách Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="tenKH">Tên Khách Hàng</label>
-                                    <input onChange={e => { this.setState({ TenKH: e.target.value }) }} type="text" className="form-control" id="tenKH" placeholder="Tên Khách Hàng" />
+                                    <input onChange={e => { this.setState({ TenKH: e.target.value }) }}
+                                        type="text" className="form-control" id="tenKH" placeholder="Tên Khách Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="diachi">Địa Chỉ</label>
-                                    <input onChange={e => { this.setState({ DiaChi: e.target.value }) }} type="text" className="form-control" id="diachi" placeholder="Địa Chỉ" />
+                                    <input onChange={e => { this.setState({ DiaChi: e.target.value }) }}
+                                        type="text" className="form-control" id="diachi" placeholder="Địa Chỉ" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="dthoai">Điện Thoại</label>
-                                    <input onChange={e => { this.setState({ DienThoai: e.target.value }) }} type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
+                                    <input onChange={e => { this.setState({ DienThoai: e.target.value }) }}
+                                        type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -260,15 +264,24 @@ class khachhang extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="tenKHSua">Tên Khách Hàng</label>
-                                        <input onChange={e => { this.setState({ TenEdit: e.target.value }) }} value={this.state.TenEdit} type="text" className="form-control" id="tenKHSua" placeholder="Tên Khách Hàng" />
+                                        <input
+                                            onChange={e => { this.setState({ TenEdit: e.target.value }) }}
+                                            value={this.state.TenEdit} type="text" className="form-control" id="tenKHSua"
+                                            placeholder="Tên Khách Hàng" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="diachiSua">Địa Chỉ</label>
-                                        <input onChange={e => { this.setState({ DiaChiEdit: e.target.value }) }} value={this.state.DiaChiEdit} type="text" className="form-control" id="diachiSua" placeholder="Địa Chỉ" />
+                                        <input
+                                            onChange={e => { this.setState({ DiaChiEdit: e.target.value }) }}
+                                            value={this.state.DiaChiEdit} type="text" className="form-control" id="diachiSua"
+                                            placeholder="Địa Chỉ" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="dthoaiSua">Điện Thoại</label>
-                                        <input onChange={e => { this.setState({ DienThoaiEdit: e.target.value }) }} value={this.state.DienThoaiEdit} type="text" className="form-control" id="dthoaiSua" placeholder="Điện Thoại" />
+                                        <input
+                                            onChange={e => { this.setState({ DienThoaiEdit: e.target.value }) }}
+                                            value={this.state.DienThoaiEdit} type="text" className="form-control" id="dthoaiSua"
+                                            placeholder="Điện Thoại" />
                                     </div>
 
                                 </div>
