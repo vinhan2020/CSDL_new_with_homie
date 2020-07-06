@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar'
 import Axios from 'axios';
-import dayjs from 'dayjs'
-import Swal from 'sweetalert2'
+import dayjs from 'dayjs';
+import Swal from 'sweetalert2';
 class khachhang extends Component {
     constructor(props) {
         super(props);
@@ -13,11 +13,13 @@ class khachhang extends Component {
             MaKH: '',
             DiaChi: '',
             DienThoai: '',
+
             TenEdit: '',
             MaEdit: '',
             DiaChiEdit: '',
             DienThoaiEdit: ''
         }
+
     }
 
 
@@ -37,9 +39,7 @@ class khachhang extends Component {
 
 
 
-
     deleteKH(id) {
-
         Swal.fire({
             title: "Delete this voucher ? ",
             text: "",
@@ -51,7 +51,7 @@ class khachhang extends Component {
                 Axios.post('https://baitap-mongo.herokuapp.com/Api/KhachHang/Delete', {
                     MaKH: id,
                 })
-                    .then(e => {
+                    .then(() => {
                         Axios.get('https://baitap-mongo.herokuapp.com/Api/KhachHang/GetAll')
                             .then(res => {
                                 const ListKH = res.data.data;
@@ -76,14 +76,24 @@ class khachhang extends Component {
         console.log(khEdit)
         Axios.post('https://baitap-mongo.herokuapp.com/Api/KhachHang/Update', khEdit)
             .then(e => {
-                if (e.data.status)
+                if (e.data.status) {
                     Swal.fire({
-                        title: "Thành Công",
+                        title: "Sửa Thành Công",
                         timer: 1000
-
                     })
-                else
-                    Swal.fire("Thành Long")
+                    document.getElementById('closeModal1').click()
+                }
+                else { Swal.fire("Thành Long") }
+            })
+            .then(() => {
+                Axios.get('https://baitap-mongo.herokuapp.com/Api/KhachHang/GetAll')
+                    .then(res => {
+                        const ListKH = res.data.data;
+                        this.setState({
+                            ListKH
+                        })
+                        console.log(ListKH)
+                    })
             })
     }
 
@@ -97,17 +107,42 @@ class khachhang extends Component {
 
         Axios.post('https://baitap-mongo.herokuapp.com/Api/KhachHang/Insert', kh)
             .then((res) => {
-                console.log(res.data)
-                console.log(kh)
+                if (res.data.status) {
+                    Swal.fire({
+                        title: "Thêm Thành Công",
+                        timer: 1000
+                    })
+                    document.getElementById('closeModal').click();
+                }
+
+                else {
+                    Swal.fire({
+                        title: res.data.message,
+                        timer: 1000
+                    })
+                }
+
             })
-            .then(e => {
+            .then(() => {
+                Axios.get('https://baitap-mongo.herokuapp.com/Api/KhachHang/GetAll')
+                    .then(res => {
+                        const ListKH = res.data.data;
+                        this.setState({
+                            ListKH
+                        })
+                    })
+            })
+            .then(() => {
                 this.setState({
                     TenKH: '',
                     MaKH: '',
                     DiaChi: '',
                     DienThoai: '',
+
                 })
             })
+
+
     }
 
     getInfoInsert = (ma, ten, dia, dt) => {
@@ -119,6 +154,8 @@ class khachhang extends Component {
 
         })
     }
+
+
 
     render() {
         return (
@@ -160,11 +197,12 @@ class khachhang extends Component {
                                     <label htmlFor="dthoai">Điện Thoại</label>
                                     <input onChange={e => { this.setState({ DienThoai: e.target.value }) }} type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
                                 </div>
-
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
-                                <a href="/khachhang"><button type="button" className="btn btn-success btn-w" onClick={() => { this.createKH() }}>Tạo</button></a>
+                                <button id="closeModal" type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
+                                <Link to="/khachhang">
+                                    <button type="button" className="btn btn-success btn-w" onClick={() => { this.createKH() }}>Tạo</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -235,7 +273,7 @@ class khachhang extends Component {
 
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
+                                    <button id="closeModal1" type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
                                     <button type="button" className="btn btn-success btn-w" onClick={() => { this.updateKH() }}>Chấp Nhận</button>
                                 </div>
                             </div>
