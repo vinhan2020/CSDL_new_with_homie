@@ -8,6 +8,8 @@ import Congty from './component/input/congty'
 import Sanpham from './component/input/sanpham'
 import Khachhang from './component/input/khachhang'
 
+import HoaDon from './component/input/hoadon'
+
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Route path={'/sanpham'} component={Sanpham} />
 
         <Route path={'/khachhang'} component={Khachhang} />
+        <Route path={'/hoadon'} component={HoaDon} />
 
         <Route path={'/'} component={Home} />
       </Switch>

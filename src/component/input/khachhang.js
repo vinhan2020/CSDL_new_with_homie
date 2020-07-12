@@ -79,11 +79,18 @@ class khachhang extends Component {
                 if (e.data.status) {
                     Swal.fire({
                         title: "Sửa Thành Công",
+                        icon: "success",
                         timer: 1000
                     })
                     document.getElementById('closeModal1').click()
                 }
-                else { Swal.fire("Thành Long") }
+                else {
+                    Swal.fire({
+                        title: "Sửa Thành Công",
+                        icon: "error",
+                        timer: 1000
+                    })
+                }
             })
             .then(() => {
                 Axios.get('https://baitap-mongo.herokuapp.com/Api/KhachHang/GetAll')
@@ -110,6 +117,7 @@ class khachhang extends Component {
                 if (res.data.status) {
                     Swal.fire({
                         title: "Thêm Thành Công",
+                        icon: "success",
                         timer: 1000
                     })
                     document.getElementById('closeModal').click();
@@ -118,6 +126,7 @@ class khachhang extends Component {
                 else {
                     Swal.fire({
                         title: res.data.message,
+                        icon: "error",
                         timer: 1000
                     })
                 }
@@ -137,7 +146,7 @@ class khachhang extends Component {
                     TenKH: '',
                     MaKH: '',
                     DiaChi: '',
-                    DienThoai: '',
+                    DienThoai: 0,
 
                 })
             })
@@ -184,21 +193,25 @@ class khachhang extends Component {
                                 <div className="form-group">
                                     <label htmlFor="maKH">Mã Khách Hàng</label>
                                     <input onChange={e => { this.setState({ MaKH: e.target.value }) }}
+                                        value={this.state.MaKH}
                                         type="text" className="form-control" id="maKH" placeholder="Mã Khách Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="tenKH">Tên Khách Hàng</label>
                                     <input onChange={e => { this.setState({ TenKH: e.target.value }) }}
+                                        value={this.state.TenKH}
                                         type="text" className="form-control" id="tenKH" placeholder="Tên Khách Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="diachi">Địa Chỉ</label>
                                     <input onChange={e => { this.setState({ DiaChi: e.target.value }) }}
+                                        value={this.state.DiaChi}
                                         type="text" className="form-control" id="diachi" placeholder="Địa Chỉ" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="dthoai">Điện Thoại</label>
-                                    <input onChange={e => { this.setState({ DienThoai: e.target.value }) }}
+                                    <input maxLength={11} onChange={e => { this.setState({ DienThoai: e.target.value }) }}
+                                        value={this.state.DienThoai}
                                         type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
                                 </div>
                             </div>

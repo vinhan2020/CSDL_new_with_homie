@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import Navbar from '../navbar'
 import Axios from 'axios';
 import Swal from 'sweetalert2'
+import NumberFormat from 'react-number-format'
 
 class sanpham extends Component {
     constructor(props) {
         super(props);
         this.state = {
             ListSP: [],
+            ListH: [],
             mamh: '',
             tenmh: '',
             mausac: '',
@@ -37,6 +39,19 @@ class sanpham extends Component {
                 console.log(err)
             })
 
+
+        Axios.get('https://baitap-mongo.herokuapp.com/Api/HangSanXuat/GetAll')
+            .then(res => {
+                const ListH = res.data.data
+                this.setState({
+                    ListH
+                })
+                console.log(ListH)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     }
 
     createSP() {
@@ -53,6 +68,7 @@ class sanpham extends Component {
                 if (res.data.status) {
                     Swal.fire({
                         title: "Thêm Thành Công",
+                        icon: "success",
                         timer: 1000
                     })
                     document.getElementById('closeModal').click();
@@ -61,6 +77,7 @@ class sanpham extends Component {
                 else {
                     Swal.fire({
                         title: res.data.message,
+                        icon: "error",
                         timer: 1000
                     })
                 }
@@ -131,6 +148,7 @@ class sanpham extends Component {
                 if (res.data.status) {
                     Swal.fire({
                         title: "Sửa Thành Công",
+                        icon: "success",
                         timer: 1000
                     })
                     document.getElementById('closeModal1').click();
@@ -139,6 +157,7 @@ class sanpham extends Component {
                 else {
                     Swal.fire({
                         title: res.data.message,
+                        icon: "error",
                         timer: 1000
                     })
                 }
@@ -194,23 +213,42 @@ class sanpham extends Component {
                             <div className="modal-body">
                                 <div className="form-group">
                                     <label htmlFor="maSP">Mã Mặt Hàng</label>
-                                    <input onChange={e => { this.setState({ mamh: e.target.value }) }} type="text" className="form-control" id="maSP" placeholder="Mã Mặt Hàng" />
+                                    <input onChange={e => { this.setState({ mamh: e.target.value }) }}
+                                        value={this.state.mamh}
+                                        type="text" className="form-control" id="maSP" placeholder="Mã Mặt Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="tenSP">Tên Mặt Hàng</label>
-                                    <input onChange={e => { this.setState({ tenmh: e.target.value }) }} type="text" className="form-control" id="tenSP" placeholder="Tên Mặt Hàng" />
+                                    <input onChange={e => { this.setState({ tenmh: e.target.value }) }}
+                                        value={this.state.tenmh}
+                                        type="text" className="form-control" id="tenSP" placeholder="Tên Mặt Hàng" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="mausac">Màu Sắc</label>
-                                    <input onChange={e => { this.setState({ mausac: e.target.value }) }} type="text" className="form-control" id="mausac" placeholder="Màu sắc" />
+                                    <input onChange={e => { this.setState({ mausac: e.target.value }) }}
+                                        value={this.state.mausac}
+                                        type="text" className="form-control" id="mausac" placeholder="Màu sắc" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="dongia">Đơn Giá</label>
-                                    <input onChange={e => { this.setState({ dongia: e.target.value }) }} type="number" className="form-control" id="dongia" placeholder="Đơn Giá" />
+                                    <input onChange={e => { this.setState({ dongia: e.target.value }) }}
+                                        value={this.state.dongia}
+                                        type="number" className="form-control" id="dongia" placeholder="Đơn Giá" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="maH">Mã Hãng</label>
-                                    <input onChange={e => { this.setState({ mah: e.target.value }) }} type="text" className="form-control" id="maH" placeholder="Mã Hãng" />
+                                    <select className="form-control"
+                                        value={this.state.mah} onChange={e => { this.setState({ mah: e.target.value }) }} id="maH" >
+                                        <option>--Chọn một mã hãng--</option>
+                                        {this.state.ListH.map((objH, i) => {
+                                            return (
+                                                <option
+                                                    key={i}>{objH.MaH}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -249,7 +287,11 @@ class sanpham extends Component {
                                         </td>
                                         <td><h6>{obj.TenMH}</h6></td>
                                         <td>{obj.MauSac}</td>
-                                        <td>{obj.DonGia}</td>
+                                        <td><NumberFormat value={obj.DonGia}
+                                            displayType={'text'}
+                                            thousandSeparator={true}
+                                            suffix={' VND'} />
+                                        </td>
                                         <td>{obj.MaH}</td>
                                         <td style={{ maxWidth: "100px" }}><button className="btn btn-primary mg-10"
                                             data-toggle="modal" data-target="#suaForm"
@@ -297,12 +339,20 @@ class sanpham extends Component {
                                             value={this.state.DonGiaS}
                                             placeholder="Đơn Giá" />
                                     </div>
+
                                     <div className="form-group">
                                         <label htmlFor="maHSua">Mã Hãng</label>
-                                        <input type="text" className="form-control" id="maHSua"
-                                            onChange={e => { this.setState({ MaHS: e.target.value }) }}
-                                            value={this.state.MaHS}
-                                            placeholder="Mã Hãng" />
+                                        <select className="form-control"
+                                            value={this.state.MaH}
+                                            onChange={e => { this.setState({ MaHS: e.target.value }) }} id="maHSua" >
+                                            {this.state.ListH.map((objH, i) => {
+                                                return (
+                                                    <option
+                                                        value={this.state.MaH}
+                                                        key={i}>{objH.MaCT}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
