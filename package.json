@@ -15,8 +15,10 @@
     "jquery": "^3.5.1",
     "mongoose": "^5.9.20",
     "nodemon": "^2.0.4",
+    "query": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-number-format": "^4.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "sweetalert2": "^9.15.2"
