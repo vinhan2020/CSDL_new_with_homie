@@ -210,7 +210,7 @@ class khachhang extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="dthoai">Điện Thoại</label>
-                                    <input maxLength={11} onChange={e => { this.setState({ DienThoai: e.target.value }) }}
+                                    <input maxLength={10} onChange={e => { this.setState({ DienThoai: e.target.value }) }}
                                         value={this.state.DienThoai}
                                         type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
                                 </div>

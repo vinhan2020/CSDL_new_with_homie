@@ -214,7 +214,7 @@ class congty extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="dthoaiCT">Điện Thoại</label>
-                                    <input type="text" className="form-control"
+                                    <input maxLength={10} type="text" className="form-control"
                                         onChange={e => { this.setState({ sdt: e.target.value }) }}
                                         value={this.state.sdt}
                                         id="dthoaiCT" placeholder="Điện Thoại" />
