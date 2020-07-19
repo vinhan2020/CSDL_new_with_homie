@@ -14,12 +14,12 @@ class hoadon extends Component {
             mahd: '',
             makh: '',
             mamh: '',
-            soluong: 0,
+            soluong: '',
 
             mahdE: '',
             makhE: '',
             mamhE: '',
-            soluongE: 0
+            soluongE: ''
         }
     }
 
@@ -93,7 +93,7 @@ class hoadon extends Component {
                     mahd: '',
                     makh: '',
                     mamh: '',
-                    soluong: 0
+                    soluong: ''
                 })
 
             })
@@ -250,9 +250,10 @@ class hoadon extends Component {
                 {/* btn them san pham */}
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
-                    <table className="table">
+                    <table className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Mã Hóa Đơn</th>
                                 <th>Mã Khách Hàng</th>
                                 <th>Mã Mặt Hàng</th>
@@ -265,14 +266,15 @@ class hoadon extends Component {
                             {this.state.ListHD.map((obj, i) => {
                                 return (
                                     <tr key={i}>
+                                        <td><h6>{i + 1}</h6></td>
                                         <td>
                                             <h6>{obj.MaHD}</h6>
                                         </td>
                                         <td><h6>{obj.MaKH}</h6></td>
-                                        <td>{obj.MaMH}</td>
-                                        <td>{obj.SoLuong}</td>
-                                        <td>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</td>
-                                        <td style={{ maxWidth: "100px" }}>
+                                        <td><h6>{obj.MaMH}</h6></td>
+                                        <td><h6>{obj.SoLuong}</h6></td>
+                                        <td><h6>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</h6></td>
+                                        <td className="a">
                                             <button className="btn btn-primary mg-10"
                                                 onClick={() => { this.getinforInser(obj.MaHD, obj.MaKH, obj.MaMH, obj.SoLuong) }}
                                                 data-toggle="modal" data-target="#suaForm">Sửa</button>

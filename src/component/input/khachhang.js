@@ -4,6 +4,9 @@ import Navbar from '../navbar'
 import Axios from 'axios';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+
+
 class khachhang extends Component {
     constructor(props) {
         super(props);
@@ -228,9 +231,10 @@ class khachhang extends Component {
 
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
-                    <table className="table">
+                    <table className="table scroll table-striped table-bordered table-sm" cellSpacing="0" width="100%"  >
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Mã Khách Hàng</th>
                                 <th>Tên Khách Hàng</th>
                                 <th>Địa Chỉ</th>
@@ -243,18 +247,20 @@ class khachhang extends Component {
                             {this.state.ListKH.map((obj, i) => {
                                 return (
                                     <tr key={i}>
+                                        <td><h6>
+                                            {i + 1}
+                                        </h6></td>
                                         <td>
                                             <h6>{obj.MaKH}</h6>
                                         </td>
                                         <td><h6>{obj.TenKH}</h6></td>
-                                        <td>{obj.DiaChi}</td>
-                                        <td>{obj.DienThoai}</td>
-                                        <td>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</td>
-                                        <td style={{ maxWidth: "100px" }}><button
+                                        <td><h6>{obj.DiaChi}</h6></td>
+                                        <td><h6>{obj.DienThoai}</h6></td>
+                                        <td><h6>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</h6></td>
+                                        <td className="a"><button
                                             onClick={() => { this.getInfoInsert(obj.MaKH, obj.TenKH, obj.DiaChi, obj.DienThoai) }}
                                             className="btn btn-primary mg-10" data-toggle="modal" data-target="#suaForm">Sửa</button>
                                             <button className="btn btn-danger mg-10" onClick={() => { this.deleteKH(obj.MaKH) }}>Xóa</button></td>
-
                                     </tr>
                                 )
                             })}
@@ -307,9 +313,12 @@ class khachhang extends Component {
                     </div>
                     {/* btn them san pham */}
                 </div>
-
                 {/* hien thị danh sách */}
-
+                <ScrollUpButton
+                    EasingType="linear"
+                    ShowAtPosition={18}
+                    AnimationDuration={300}
+                />
 
             </div >
         );

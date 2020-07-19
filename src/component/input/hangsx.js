@@ -222,9 +222,10 @@ class hangsx extends Component {
 
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
-                    <table className="table">
+                    <table className="table table-bordered table-striped table-sm" cellSpacing="0">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Mã Hãng</th>
                                 <th>Tên Hãng</th>
                                 <th>Quốc Gia</th>
@@ -237,14 +238,15 @@ class hangsx extends Component {
                             {this.state.ListHang.map((obj, i) => {
                                 return (
                                     <tr key={i}>
+                                        <td><h6>{i + 1}</h6></td>
                                         <td>
                                             <h6>{obj.MaH}</h6>
                                         </td>
                                         <td><h6>{obj.TenHang}</h6></td>
-                                        <td>{obj.QuocGia}</td>
-                                        <td>{obj.MaCT}</td>
-                                        <td>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</td>
-                                        <td style={{ maxWidth: "100px" }}>
+                                        <td><h6>{obj.QuocGia}</h6></td>
+                                        <td><h6>{obj.MaCT}</h6></td>
+                                        <td><h6>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</h6></td>
+                                        <td className="a">
                                             <button className="btn btn-primary mg-10"
                                                 onClick={() => { this.getinforInser(obj.MaH, obj.TenHang, obj.QuocGia, obj.MaCT) }}
                                                 data-toggle="modal" data-target="#suaForm">Sửa</button>

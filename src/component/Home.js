@@ -7,9 +7,8 @@ class Home extends Component {
         return (
             <div>
                 <Navbar></Navbar>
-                <section className="banner" >
-                </section>
-            </div>
+
+            </div >
 
         );
     }

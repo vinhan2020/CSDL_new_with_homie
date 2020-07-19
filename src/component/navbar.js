@@ -9,9 +9,10 @@ class navbar extends Component {
         return (
             <div>
                 <header>
-                    <a href="/#" className="logo">LOGO</a>
+
+                    <a href="/" className="logo aaa"><span>LOGO</span></a>
                     <ul>
-                        <li><a href="/#">Trang Chủ</a></li>
+                        <li><Link to={'/'}>Trang Chủ</Link> </li>
                         <li><Link to={'/khachhang'}>Khách Hàng</Link></li>
                         <li><Link to={'/congty'}>Công Ty</Link></li>
                         <li><Link to={'/hangsx'}>Hãng Sản Xuất</Link></li>

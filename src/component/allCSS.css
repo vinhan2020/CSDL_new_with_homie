@@ -14,6 +14,7 @@ header {
 a {
   text-decoration: none;
 }
+
 header.sticky {
   background: #afa8a8;
   padding: 5px 100px;
@@ -23,7 +24,7 @@ header .logo {
   font-weight: 700;
   color: #000;
   text-decoration: none;
-  font-size: 2em;
+  font-size: 3em;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: 2s;
@@ -95,9 +96,6 @@ header.sticky .logo {
 .paddingTale {
   margin-top: 70px;
 }
-.mg-10 {
-  margin-right: 30px;
-}
 
 .btn-w {
   width: 100px;
@@ -113,7 +111,9 @@ header.sticky .logo {
 .btn-active {
   background-color: red;
 }
+
 /* CSS của Home Page */
+
 /* CSS của Hãng Page */
 
 /* CSS của cong ty Page */
@@ -122,5 +122,29 @@ header.sticky .logo {
 /* CSS của san pham Page */
 /* CSS của san pham Page */
 
-/* CSS của khach hang Page */
-/* CSS của khach hang Page */
+/* CSS của home Page */
+
+/* CSS của home Page */
+
+.a {
+  display: flex;
+  justify-content: space-around;
+}
+.aaa::before {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(-45deg);
+  animation: ff 2s infinite 2s ease-in;
+}
+
+@keyframes ff {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 100%;
+  }
+}

@@ -238,9 +238,10 @@ class congty extends Component {
 
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
-                    <table className="table">
+                    <table className="table table-bordered table-striped table-sm" cellSpacing="0">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Mã Công Ty</th>
                                 <th>Tên Công Ty</th>
                                 <th>Địa Chỉ</th>
@@ -253,14 +254,15 @@ class congty extends Component {
                             {this.state.ListCTY.map((obj, i) => {
                                 return (
                                     <tr key={i}>
+                                        <td><h6>{i + 1}</h6></td>
                                         <td>
                                             <h6>{obj.MaCT}</h6>
                                         </td>
                                         <td><h6>{obj.TenCT}</h6></td>
-                                        <td>{obj.DiaChi}</td>
-                                        <td>{obj.SoDienThoai}</td>
-                                        <td>{obj.GiamDoc}</td>
-                                        <td style={{ maxWidth: "100px" }}>
+                                        <td><h6>{obj.DiaChi}</h6></td>
+                                        <td><h6>{obj.SoDienThoai}</h6></td>
+                                        <td><h6>{obj.GiamDoc}</h6></td>
+                                        <td className="a">
                                             <button
                                                 onClick={() => { this.getinfoInsert(obj.MaCT, obj.TenCT, obj.DiaChi, obj.SoDienThoai, obj.GiamDoc) }}
                                                 className="btn btn-primary mg-10" data-toggle="modal" data-target="#suaForm">Sửa</button>

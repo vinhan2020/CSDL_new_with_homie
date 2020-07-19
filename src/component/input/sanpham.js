@@ -14,7 +14,7 @@ class sanpham extends Component {
             mamh: '',
             tenmh: '',
             mausac: '',
-            dongia: 0,
+            dongia: '',
             mah: '',
 
             MaMHS: '',
@@ -100,7 +100,7 @@ class sanpham extends Component {
                     mamh: '',
                     tenmh: '',
                     mausac: '',
-                    dongia: 0,
+                    dongia: '',
                     mah: '',
 
                 })
@@ -187,6 +187,34 @@ class sanpham extends Component {
         })
     }
 
+    rowTable() {
+        return (
+            this.state.ListSP.map((obj, i) => {
+                return (
+                    <tr key={i}>
+                        <td><h6>{i + 1}</h6></td>
+                        <td>
+                            <h6>{obj.MaMH}</h6>
+                        </td>
+                        <td><h6>{obj.TenMH}</h6></td>
+                        <td><h6>{obj.MauSac}</h6></td>
+                        <td><h6><NumberFormat value={obj.DonGia}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={' VND'} /></h6>
+                        </td>
+                        <td>{obj.MaH}</td>
+                        <td className="a"><button className="btn btn-primary mg-10"
+                            data-toggle="modal" data-target="#suaForm"
+                            onClick={() => { this.getinfoInput(obj.MaMH, obj.TenMH, obj.MauSac, obj.DonGia, obj.MaH) }}>Sửa</button>
+                            <button onClick={() => { this.deleteSP(obj.MaMH) }} className="btn btn-danger mg-10">Xóa</button></td>
+
+                    </tr>
+                )
+            })
+        )
+    }
+
     render() {
         return (
             <div>
@@ -233,6 +261,7 @@ class sanpham extends Component {
                                     <label htmlFor="dongia">Đơn Giá</label>
                                     <input onChange={e => { this.setState({ dongia: e.target.value }) }}
                                         value={this.state.dongia}
+                                        min={1}
                                         type="number" className="form-control" id="dongia" placeholder="Đơn Giá" />
                                 </div>
                                 <div className="form-group">
@@ -267,9 +296,10 @@ class sanpham extends Component {
 
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
-                    <table className="table">
+                    <table className="table table-striped table-bordered table-sm" cellSpacing="0">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Mã Mặt Hàng</th>
                                 <th>Tên Mặt Hàng</th>
                                 <th>Màu Sắc</th>
@@ -279,28 +309,7 @@ class sanpham extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.ListSP.map((obj, i) => {
-                                return (
-                                    <tr key={i}>
-                                        <td>
-                                            <h6>{obj.MaMH}</h6>
-                                        </td>
-                                        <td><h6>{obj.TenMH}</h6></td>
-                                        <td>{obj.MauSac}</td>
-                                        <td><NumberFormat value={obj.DonGia}
-                                            displayType={'text'}
-                                            thousandSeparator={true}
-                                            suffix={' VND'} />
-                                        </td>
-                                        <td>{obj.MaH}</td>
-                                        <td style={{ maxWidth: "100px" }}><button className="btn btn-primary mg-10"
-                                            data-toggle="modal" data-target="#suaForm"
-                                            onClick={() => { this.getinfoInput(obj.MaMH, obj.TenMH, obj.MauSac, obj.DonGia, obj.MaH) }}>Sửa</button>
-                                            <button onClick={() => { this.deleteSP(obj.MaMH) }} className="btn btn-danger mg-10">Xóa</button></td>
-
-                                    </tr>
-                                )
-                            })}
+                            {this.rowTable()}
                         </tbody>
                     </table>
                     {/* btn them san pham */}
