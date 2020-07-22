@@ -94,7 +94,11 @@ header.sticky .logo {
   align-items: center;
 }
 .paddingTale {
-  margin-top: 70px;
+  margin-top: 10px;
+}
+
+.filter {
+  width: 400px;
 }
 
 .btn-w {
@@ -123,7 +127,11 @@ header.sticky .logo {
 /* CSS của san pham Page */
 
 /* CSS của home Page */
-
+.error {
+  font-size: 10px;
+  color: red;
+  margin-left: 10px;
+}
 /* CSS của home Page */
 
 .a {

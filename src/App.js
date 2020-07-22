@@ -19,12 +19,9 @@ function App() {
         <Route path={'/login'} component={Login} />
         <Route path={'/hangsx'} component={HangSX} />
         <Route path={'/congty'} component={Congty} />
-
         <Route path={'/sanpham'} component={Sanpham} />
-
         <Route path={'/khachhang'} component={Khachhang} />
         <Route path={'/hoadon'} component={HoaDon} />
-
         <Route path={'/'} component={Home} />
       </Switch>
     </Router>

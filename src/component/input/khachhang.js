@@ -4,25 +4,27 @@ import Navbar from '../navbar'
 import Axios from 'axios';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
-import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
+const initialState = {
+    ListKH: [],
+    TenKH: '',
+    MaKH: '',
+    DiaChi: '',
+    DienThoai: '',
+
+    TenEdit: '',
+    MaEdit: '',
+    DiaChiEdit: '',
+    DienThoaiEdit: '',
+
+
+
+}
 
 class khachhang extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            ListKH: [],
-            TenKH: '',
-            MaKH: '',
-            DiaChi: '',
-            DienThoai: '',
-
-            TenEdit: '',
-            MaEdit: '',
-            DiaChiEdit: '',
-            DienThoaiEdit: ''
-        }
-
+        this.state = initialState;
     }
 
 
@@ -39,6 +41,7 @@ class khachhang extends Component {
                 console.log(err)
             })
     }
+
 
 
 
@@ -107,6 +110,8 @@ class khachhang extends Component {
             })
     }
 
+
+
     createKH() {
         const kh = {
             TenKH: this.state.TenKH,
@@ -145,13 +150,7 @@ class khachhang extends Component {
                     })
             })
             .then(() => {
-                this.setState({
-                    TenKH: '',
-                    MaKH: '',
-                    DiaChi: '',
-                    DienThoai: 0,
-
-                })
+                this.setState(initialState)
             })
 
 
@@ -169,9 +168,10 @@ class khachhang extends Component {
 
 
 
+
+
     render() {
         return (
-
             < div >
                 <Navbar></Navbar>
                 <div className="header_add">
@@ -217,6 +217,7 @@ class khachhang extends Component {
                                         value={this.state.DienThoai}
                                         type="text" className="form-control" id="dthoai" placeholder="Điện Thoại" />
                                 </div>
+
                             </div>
                             <div className="modal-footer">
                                 <button id="closeModal" type="button" className="btn btn-secondary btn-w" data-dismiss="modal">Đóng</button>
@@ -228,7 +229,20 @@ class khachhang extends Component {
                     </div>
                 </div>
                 {/* btn them san pham */}
-
+                <div className="input-group container filter">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Nhập từ khóa..."
+                        name="filterMa"
+                        onChange={this.onChange}
+                    />
+                    <span className="input-group-btn">
+                        <button className="btn btn-primary" type="button">
+                            <span className="fa fa-search mr-5"></span>Tìm
+                  </button>
+                    </span>
+                </div>
                 {/* hien thị danh sách */}
                 <div className="container paddingTale">
                     <table className="table scroll table-striped table-bordered table-sm" cellSpacing="0" width="100%"  >
@@ -244,26 +258,30 @@ class khachhang extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.ListKH.map((obj, i) => {
-                                return (
-                                    <tr key={i}>
-                                        <td><h6>
-                                            {i + 1}
-                                        </h6></td>
-                                        <td>
-                                            <h6>{obj.MaKH}</h6>
-                                        </td>
-                                        <td><h6>{obj.TenKH}</h6></td>
-                                        <td><h6>{obj.DiaChi}</h6></td>
-                                        <td><h6>{obj.DienThoai}</h6></td>
-                                        <td><h6>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</h6></td>
-                                        <td className="a"><button
-                                            onClick={() => { this.getInfoInsert(obj.MaKH, obj.TenKH, obj.DiaChi, obj.DienThoai) }}
-                                            className="btn btn-primary mg-10" data-toggle="modal" data-target="#suaForm">Sửa</button>
-                                            <button className="btn btn-danger mg-10" onClick={() => { this.deleteKH(obj.MaKH) }}>Xóa</button></td>
-                                    </tr>
-                                )
-                            })}
+                            {this.state.loading ? (
+                                <tr><td>Loading...</td></tr>
+                            ) : (
+                                    this.state.ListKH.map((obj, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td><h6>
+                                                    {i + 1}
+                                                </h6></td>
+                                                <td>
+                                                    <h6>{obj.MaKH}</h6>
+                                                </td>
+                                                <td><h6>{obj.TenKH}</h6></td>
+                                                <td><h6>{obj.DiaChi}</h6></td>
+                                                <td><h6>{obj.DienThoai}</h6></td>
+                                                <td><h6>{dayjs(obj.CreatedDate).format("DD-MM-YYYY")}</h6></td>
+                                                <td className="a"><button
+                                                    onClick={() => { this.getInfoInsert(obj.MaKH, obj.TenKH, obj.DiaChi, obj.DienThoai) }}
+                                                    className="btn btn-primary mg-10" data-toggle="modal" data-target="#suaForm">Sửa</button>
+                                                    <button className="btn btn-danger mg-10" onClick={() => { this.deleteKH(obj.MaKH) }}>Xóa</button></td>
+                                            </tr>
+                                        )
+                                    })
+                                )}
                         </tbody>
                     </table>
                     {/* btn them san pham */}
@@ -314,11 +332,7 @@ class khachhang extends Component {
                     {/* btn them san pham */}
                 </div>
                 {/* hien thị danh sách */}
-                <ScrollUpButton
-                    EasingType="linear"
-                    ShowAtPosition={18}
-                    AnimationDuration={300}
-                />
+
 
             </div >
         );
